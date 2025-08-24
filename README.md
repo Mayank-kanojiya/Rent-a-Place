@@ -1,183 +1,124 @@
 # RentAPlace
-Rent A Place is a scalable, full-stack web application for managing rental properties, bookings, messaging, and users. Architected with Spring Boot microservices and a modular Angular frontend, it provides a seamless user experience for both property owners and renters.
+
+Rent A Place is a full-stack, multi-module web application for managing rental properties and bookings, offering tailored dashboards for owners and users, along with seamless communication features. The backend is implemented with Spring Boot microservices and the frontend with Angular, making the system scalable and maintainable.
 
 🚀 Features
-Dynamic Property Search
+Property Search & Booking
 
-Filter by location, date, type, and features
+Search properties by date range, location, and property features.
 
-Detailed property pages with galleries
+Detailed property pages with image galleries.
 
-Owner Dashboard
+User booking requests and history tracking.
 
-Add, update, and remove properties
+User & Owner Dashboards
 
-Approve or decline booking requests instantly
+Owners can add, update, delete properties.
 
-Manage messages and email communications with users
+Approve or decline booking requests.
 
-User Dashboard
+Manage messages and email communications.
 
-Search and book properties
+Users can browse properties, book, and send messages.
 
-Track status of bookings
+Authentication & Authorization
 
-Send and receive messages to owners
+Secure JWT-based login and token management.
 
-Secure Authentication
+Separate flows for user and owner registration and login.
 
-Separate registration/login for User and Owner roles
+Messaging Service
 
-JWT-based authentication and Spring Security for endpoint protection
+Real-time chat capability via independent chat microservice.
 
-Real-time Messaging
+Responsive UI
 
-Dedicated Chat Microservice for handling messaging between users and owners
+Modular Angular frontend with a clean and intuitive interface.
 
-Responsive UI & Modern Experience
+📁 Project Structure
+Backend
+Main service (rentaplace_service)
 
-Angular components for every feature
+Controllers: Authentication, Owner, Property, User, Email
 
-Desktop and mobile friendly
+DTOs: AuthenticationRequest/Response, Booking, Message, Property, User
 
-Microservice Ready
+Models: User, Property, Booking, Email
 
-Main Rental microservice (Spring Boot)
+Repositories: UserRepo, PropertyRepo, BookingRepo, EmailRepo
 
-Chat microservice for communication
+Services: UserService, PropertyService, BookingService, EmailService
 
-🏗️ Project Structure
-Backend (Spring Boot Java)
-Main Rental Microservice (rentaplace_service)
-controller/: REST APIs
-(Authenticate, OwnerController, PropertyController, EmailController, UserController)
+Security: JWT and Spring Security configurations
 
-Dto/: Data Transfer Objects
-(BookingDto, PropertyDto, AuthenticationRequest/Response, etc.)
+Exceptions and utilities
 
-exceptions/: Custom exceptions
+Chat Microservice (ChatMicroService)
 
-model/: JPA entities for User, Property, Booking, Email
+Handles messaging functionality
 
-repo/: JPA Repositories
-
-Security/: SecurityConfig.java for roles/JWT/Spring Security
-
-service/: Business logic/service layer
-
-Util/: JwtUtil.java for JWT token handling
-
-Chat Microservice
-config/: CORS & app configs
-
-controller/: Chatcontroller.java
-
-dto/: Chat DTOs
-
-model/: Chat entity
-
-repo/: ChatRepo.java
-
-service/: ChatService.java
+Contains ChatController, ChatService, ChatRepo, and related DTOs/models
 
 Frontend (Angular)
-Highly Modular Folder Structure
+Modular architecture with feature folders:
 
-addproperty/, emails/, header/, login/, messages/, model/, ownerdashboard/, ownersignup/, property/, Service/, signup/, userbookings/, userdashboard/
+login, signup, ownerSignup, ownerDashboard, userDashboard, messages, property, addProperty, emails, userBookings, etc.
 
-Routing and main app structure: app-routing.module.ts, app.module.ts
+Central service and routing modules for management
 
-⚡ Getting Started
-Prerequisites
-Node.js & Angular CLI
+🛠️ Installation & Running
+Prerequisites:
+Java 17/21+, Maven, MySQL, Node.js, Angular CLI
 
-Java JDK 17+ / 21+
-
-MySQL
-
-Maven
-
-Git
-
-Setup Guide
-1. Clone the Repository
+Steps:
+Clone Repository
 
 bash
-git clone https://github.com/Mayank-kanojiya/Rent-a-Place.git
-cd Rent-a-Place
-2. Backend Service Setup
+git clone https://github.com/Mayank-kanojia/Rent-A-Place.git
+cd Rent-A-Place
+Run Backend
+Navigate to backend service folder (rentaplace_service), configure DB credentials in application.properties:
 
 bash
-cd rentaplace_service
-# Edit src/main/resources/application.properties for your MySQL setup
 mvn spring-boot:run
-3. (Optional) Start Chat Microservice
+Run Chat Microservice (Optional)
 
 bash
 cd ChatMicroService
 mvn spring-boot:run
-4. Frontend Angular Setup
+Run Frontend
 
 bash
-cd client  # Or src/app if you use Angular CLI workspace
+cd client # or your Angular frontend dir
 npm install
 ng serve
-Go to http://localhost:4200 in your browser.
+Visit http://localhost:4200
 
-🔗 Usage
-Register as a User (for booking) or Owner (for managing properties)
+📸 Screenshots: Snippets folder
+Feature	Screenshot
+Search Properties	
+User Dashboard	
+User Registration	
+Login Page	
+Book Property	
+User Bookings	
+Owner Registration	
+Owner Dashboard	
+Add Property	
+Booking Requests	
+Messaging	
+Owner Email Management	
+Property Gallery	
+🤝 Contributing
+Feel free to suggest features, report bugs, or improve documentation. Pull requests are warmly welcomed!
 
-Owners: Add/manage properties, view & reply to booking requests, chat with users
-
-Users: Search properties, book, message owners, track bookings
-
-Real-time messaging between users and owners (if Chat/MS is running)
-
-📸 Screenshots
-User Experience & Features: Snippets folder
-
-Search & Book Properties:
-
-User Dashboard:
-
-User Registration:
-
-Login Form:
-
-Book a Property:
-
-My Bookings:
-
-Owner Experience:
-
-Owner Registration:
-
-Owner Properties Dashboard:
-
-Add Property:
-
-Booking Requests List:
-
-Message Table (Owner Replies):
-
-Email Notifications:
-
-Showcase:
-
-Property Detail & Gallery:
-
-📝 Contributing
-Pull requests are welcome.
-Open an issue for bug reports, improvements, or questions.
-
-🙋‍♂️ Author
-Mayank Kanojiya
+👤 Author
+Mayank Kanojia
 GitHub Profile
 Email: ggum251@gmail.com
 
 📄 License
-MIT License
+This project is licensed under the MIT License.
 
-Tip: You can further enhance this README by adding a Tech Stack badges section, a live demo link (if you deploy), or install instructions for contributors. Let me know if you want this or help with anything else!
 Execute npm i @ng-bootstrap/ng-bootstrap for bootstrap
 and npm i ng2-search-filter for search
