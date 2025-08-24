@@ -1,0 +1,40 @@
+<h3>My Bookings</h3>
+
+<!-- Optional: Button to go back to dashboard -->
+<button class="btn btn-secondary mb-3" routerLink="/userdashboard">Back to Dashboard</button>
+
+<!-- Empty state for user friendliness -->
+<div *ngIf="!bookings || bookings.length === 0">
+  <p class="text-muted">You have no bookings yet.</p>
+</div>
+
+<!-- Booking table, hidden if empty -->
+<table class="table" *ngIf="bookings && bookings.length > 0">
+  <thead>
+    <tr>
+      <th>Booking Id</th>
+      <th>CheckIn</th>
+      <th>CheckOut</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let booking of bookings">
+      <td>{{ booking.bookingId }}</td>
+      <td>{{ booking.checkin | date: 'mediumDate' }}</td>
+      <td>{{ booking.checkout | date: 'mediumDate' }}</td>
+      <td>
+        <span [ngClass]="{
+          'text-success': booking.status === true,
+          'text-danger': booking.status === false,
+          'text-secondary': booking.status === null || booking.status === undefined
+        }">
+          <!-- Explicit status logic -->
+          <ng-container *ngIf="booking.status === true">APPROVED</ng-container>
+          <ng-container *ngIf="booking.status === false">DECLINED</ng-container>
+          <ng-container *ngIf="booking.status !== true && booking.status !== false">PENDING</ng-container>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>

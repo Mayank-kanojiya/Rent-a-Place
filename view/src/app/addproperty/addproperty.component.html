@@ -1,0 +1,133 @@
+<div class="container">
+  <h2>Add New Property</h2>
+  <form [formGroup]="propertyForm" (ngSubmit)="Add()">
+    <div class="form-group">
+      <label for="name">Name of the Property</label><br />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter Your property name"
+        formControlName="name"
+        id="name"
+        name="name"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="type">Type of Property</label><br />
+      <select class="form-control" formControlName="type" id="type" name="type">
+        <option value="Flat">Flat</option>
+        <option value="Apartment">Apartment</option>
+        <option value="Villa">Villa</option>
+        <option value="Resort">Resort</option>
+        <option value="Others">Others</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="features">Features</label><br />
+      <select class="form-control" formControlName="features" id="features" name="features">
+        <option value="Pool">Pool</option>
+        <option value="Garden">Garden</option>
+        <option value="Mountain View">Mountain View</option>
+        <option value="Beach Facing">Beach Facing</option>
+        <option value="Forest">Forest</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Property Description</label><br />
+      <textarea
+        class="form-control"
+        placeholder="Enter Your property description"
+        formControlName="description"
+        id="description"
+        name="description"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Owner Phone</label><br />
+      <input
+        type="number"
+        class="form-control"
+        formControlName="phone"
+        placeholder="Enter your phone"
+        id="phone"
+        name="phone"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="price">Property Price</label><br />
+      <input
+        type="number"
+        class="form-control"
+        formControlName="price"
+        placeholder="Enter your property price"
+        id="price"
+        name="price"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="location">Property Location</label><br />
+      <input
+        type="text"
+        class="form-control"
+        formControlName="location"
+        placeholder="Enter your property Location"
+        id="location"
+        name="location"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="image"><h6 style="color:gray;">Image</h6></label><br />
+      <input
+        type="file"
+        class="form-control"
+        (change)="onFileChanged($event, 0)"
+        id="image"
+        name="image"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="image1"><h6 style="color:gray;">Image1</h6></label><br />
+      <input
+        type="file"
+        class="form-control"
+        (change)="onFileChanged($event, 1)"
+        id="image1"
+        name="image1"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="image2"><h6 style="color:gray;">Image2</h6></label><br />
+      <input
+        type="file"
+        class="form-control"
+        (change)="onFileChanged($event, 2)"
+        id="image2"
+        name="image2"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="image3"><h6 style="color:gray;">Image3</h6></label><br />
+      <input
+        type="file"
+        class="form-control"
+        (change)="onFileChanged($event, 3)"
+        id="image3"
+        name="image3"
+      />
+    </div>
+
+    <div style="margin-top: 0.5rem;">
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+  </form>
+</div>

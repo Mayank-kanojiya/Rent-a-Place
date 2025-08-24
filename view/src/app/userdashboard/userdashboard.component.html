@@ -1,0 +1,77 @@
+<!-- Top bar with Rent A Place title, My Bookings button, and Logout -->
+<div style="display: flex; justify-content: space-between; align-items: center; background-color: #e53935; padding: 1.5rem 2rem;">
+  <h1 style="color: white; margin: 0;">Rent A Place</h1>
+  <div>
+    <a class="btn btn-primary" routerLink="/userbookings" style="margin-right: 15px;">My Bookings</a>
+    <button class="btn btn-dark" (click)="logout()">Logout</button>
+  </div>
+</div>
+
+<div class="searchcontainer">
+  <div style="float: left; width:20%; padding: 1rem;" class="input-group col-sm-12">
+    <label for="checkin"><h5>CheckIn: </h5></label>
+    <input
+      class="form-control"
+      placeholder="yyyy-mm-dd"
+      name="checkin"
+      [(ngModel)]="checkin"
+      ngbDatepicker
+      #d="ngbDatepicker"
+    />
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+        <fa-icon [icon]="faCalender"></fa-icon>
+      </button>
+    </div>
+  </div>
+
+  <div style="float: left; width:20%; padding: 1rem;" class="input-group col-sm-12">
+    <label for="checkout"><h5>CheckOut: </h5></label>
+    <input
+      class="form-control"
+      placeholder="yyyy-mm-dd"
+      name="checkout"
+      [(ngModel)]="checkout"
+      ngbDatepicker
+      #d1="ngbDatepicker"
+    />
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button">
+        <fa-icon [icon]="faCalender"></fa-icon>
+      </button>
+    </div>
+  </div>
+
+  <div style="display:flex; float: left; width:35%; padding: 1rem;">
+    <input
+      class="form-control me-2"
+      type="search"
+      [(ngModel)]="searchText"
+      placeholder="Search By Location, Type, Features"
+      aria-label="Search"
+    />
+    <button class="btn btn-outline-success" type="submit" (click)="search()">Search</button>
+  </div>
+</div>
+
+<div class="center"></div>
+
+<div class="container">
+  <div class="row">
+    <ng-container *ngFor="let item of propertys | filter: searchText">
+      <div class="card" style="width: 20rem; padding-top: 5px; margin: 10px;">
+        <div *ngIf="item.returnedImage != null">
+          <img class="card-img-top" [src]="item.returnedImage" alt="Card image cap" />
+        </div>
+        <h5>{{ item.name }}</h5>
+        <p class="card-text"><strong>{{ item.location }}</strong></p>
+        <p class="card-text">Type <strong>{{ item.type }}</strong></p>
+        <p class="card-text">Features <strong>{{ item.features }}</strong></p>
+        <p class="card-text"><strong>₹{{ item.price }}</strong>/night</p>
+        <p>
+          <a class="btn btn-primary" [routerLink]="['/property', item.pid]">View Property</a>
+        </p>
+      </div>
+    </ng-container>
+  </div>
+</div>

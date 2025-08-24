@@ -1,0 +1,31 @@
+<div class="center">
+  <h3>Messages</h3>
+  <div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Sender</th>
+          <th>Message</th>
+          <th>Reply</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of messages; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.userName }}</td>
+          <td>{{ item.message }}</td>
+          <td>
+            <form [formGroup]="messageForm">
+              <input style="width:70%;" type="text" placeholder="Type your reply..." formControlName="message" />
+              <button type="button" class="btn btn-warning"
+                (click)="send(item.pid, item.userId, item.userName)">
+                Reply
+              </button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="center">
+  <h3>Owner Dashboard</h3>
+  <button class="btn btn-success" routerLink="/addproperty">Add New Property</button>
+  &nbsp;
+  <button class="btn btn-success" routerLink="/email">Emails</button>
+</div>
+
+<div class="center">
+  <h3>My Properties</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Property ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Location</th>
+        <th scope="col">Price</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Messages</th>
+        <th scope="col">View</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of propertyList">
+        <th scope="row">{{ item.pid }}</th>
+        <td>{{ item.name }}</td>
+        <td>{{ item.location }}</td>
+        <td>
+          <form [formGroup]="priceUpdate" (ngSubmit)="$event.preventDefault()">
+            <div class="mb-3">
+              <input
+                style="width: 80%;"
+                type="text"
+                placeholder="{{ item.price }}"
+                id="price"
+                name="price"
+                formControlName="price"
+              />
+            </div>
+          </form>
+        </td>
+        <td>
+          <button class="btn btn-warning" (click)="updatePrice(item.pid)">Update</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteProperty(item.pid)">X</button>
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="viewMessages(item.pid)">Messages</button>
+        </td>
+        <td>
+          <a class="btn btn-info" [routerLink]="['/property', item.pid]">View</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="center">
+  <h3>Booking Requests</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Booking ID</th>
+        <th scope="col">Property Name</th>
+        <th scope="col">User ID</th>
+        <th scope="col">CheckIn</th>
+        <th scope="col">Check Out</th>
+        <th scope="col">Booking Status</th>
+        <th scope="col">Approve</th>
+        <th scope="col">Decline</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of bookings">
+        <th scope="row">{{ item.bookingId }}</th>
+        <td>{{ item.propertyName }}</td>
+        <td>{{ item.userId }}</td>
+        <td>{{ item.checkin | date:'mediumDate' }}</td>
+        <td>{{ item.checkout | date:'mediumDate' }}</td>
+        <td>
+          <span [ngClass]="{
+            'text-success': item.status === true,
+            'text-danger': item.status === false,
+            'text-secondary': item.status === null || item.status === undefined
+          }">
+            <ng-container *ngIf="item.status === true">APPROVED</ng-container>
+            <ng-container *ngIf="item.status === false">DECLINED</ng-container>
+            <ng-container *ngIf="item.status !== true && item.status !== false">PENDING</ng-container>
+          </span>
+        </td>
+        <td>
+          <button class="btn btn-success" (click)="approveBooking(item.bookingId)">Approve</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="disapproveBooking(item.bookingId)">Decline</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

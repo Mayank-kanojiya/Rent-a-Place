@@ -1,0 +1,41 @@
+<nav class="navbar navbar-dark" style="background-color: #e94848;">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="userdashboard">
+      <h1 style="color:black">Rent A Place</h1>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- toggler icon/bars here if needed -->
+    </button>
+
+    <div class="search">
+      <!-- Search box or content here if needed -->
+    </div>
+
+    <div *ngIf="!isLoggedIn" class="col">
+      <br />
+      <div ngbDropdown>
+        <button class="btn btn-dark" id="gfg" routerLink="login">Login</button>
+      </div>
+    </div>
+
+    <div *ngIf="isLoggedIn" class="col">
+      <br />
+      <div ngbDropdown>
+        <button class="btn btn-dark" id="gfg" routerLink="login" (click)="logout()">Logout</button>
+      </div>
+    </div>
+
+    <div *ngIf="!isLoggedIn" class="col1">
+      <br />
+      <div ngbDropdown>
+        <button class="btn btn-dark" id="gfg" ngbDropdownToggle>Register</button>
+        <div ngbDropdownMenu="gfg">
+          <a ngbDropdownItem routerLink="ownersignup">As Owner</a>
+          <a ngbDropdownItem routerLink="signup">As User</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
