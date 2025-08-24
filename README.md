@@ -134,7 +134,7 @@ Users: Search properties, book, message owners, track bookings
 Real-time messaging between users and owners (if Chat/MS is running)
 
 📸 Screenshots
-User Experience & Features:
+User Experience & Features: Snippets folder
 
 Search & Book Properties:
 
